@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance by Eng. Hamza Mohee</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-messaging.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- SheetJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- jsQR -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <!-- FingerprintJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@4/dist/fp.min.js"></script>
+    <!-- Anime.js -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+</head>
+<body class="dark">
+    <div id="app">
+        <!-- Top Bar (shown after login) -->
+        <nav id="top-bar" style="display: none;">
+            <span id="username"></span>
+            <button id="toggle-theme">Toggle Theme</button>
+            <button id="logout">Logout</button>
+        </nav>
+
+        <!-- Login/Register Page -->
+        <div id="auth-page" data-aos="fade-in">
+            <div class="card">
+                <h2>Smart Attendance</h2>
+                <form id="auth-form">
+                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <input type="text" id="name" placeholder="Name" required style="display: none;">
+                    <button type="submit" id="auth-btn">Login</button>
+                </form>
+                <button id="switch-auth">Switch to Register</button>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="admin-dashboard" style="display: none;">
+            <div class="sidebar">
+                <ul>
+                    <li onclick="loadAdminHome()">Home</li>
+                    <li onclick="loadManageDoctors()">Manage Doctors</li>
+                    <li onclick="loadSystemReports()">Reports</li>
+                </ul>
+            </div>
+            <div class="main">
+                <div id="admin-content"></div>
+            </div>
+        </div>
+
+        <!-- Doctor Dashboard -->
+        <div id="doctor-dashboard" style="display: none;">
+            <div class="sidebar">
+                <ul>
+                    <li onclick="loadDoctorHome()">Home</li>
+                    <li onclick="loadCreateCourse()">Courses</li>
+                    <li onclick="loadCreateLecture()">Lectures</li>
+                    <li onclick="loadDoctorReports()">Reports</li>
+                    <li onclick="loadDoctorSettings()">Settings</li>
+                </ul>
+            </div>
+            <div class="main">
+                <div id="doctor-content"></div>
+            </div>
+        </div>
+
+        <!-- Student Dashboard -->
+        <div id="student-dashboard" style="display: none;">
+            <div class="sidebar">
+                <ul>
+                    <li onclick="loadStudentHome()">Home</li>
+                    <li onclick="loadJoinCourse()">Join Course</li>
+                    <li onclick="loadStudentHistory()">History</li>
+                </ul>
+            </div>
+            <div class="main">
+                <div id="student-content"></div>
+                <div id="scan-modal" style="display: none;">
+                    <video id="video" width="300" height="200"></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                    <button onclick="closeScanModal()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast"></div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
+        }
+    </script>
+</body>
+</html>
