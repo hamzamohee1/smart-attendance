@@ -2,12 +2,14 @@ AOS.init();
 
 // Firebase Config (Replace with your own)
 const firebaseConfig = {
-    apiKey: "PLACEHOLDER_API_KEY",
-    authDomain: "PLACEHOLDER_AUTH_DOMAIN",
-    projectId: "PLACEHOLDER_PROJECT_ID",
-    storageBucket: "PLACEHOLDER_STORAGE_BUCKET",
-    messagingSenderId: "PLACEHOLDER_MESSAGING_SENDER_ID",
-    appId: "PLACEHOLDER_APP_ID"
+  apiKey: "AIzaSyDjpQabpU4xTOkRLVpnbg4SkZME4k1jt5E",
+  authDomain: "cccc-510e0.firebaseapp.com",
+  databaseURL: "https://cccc-510e0-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "cccc-510e0",
+  storageBucket: "cccc-510e0.firebasestorage.app",
+  messagingSenderId: "500812395699",
+  appId: "1:500812395699:web:753d65d84c6722e1752cc6",
+  measurementId: "G-LFVWNDX1Z5"
 };
 
 firebase.initializeApp(firebaseConfig);
